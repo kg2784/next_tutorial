@@ -23,6 +23,9 @@ export async function getStaticProps(paramsss) {
   // 定義したparams以外にも余計なもんついてきてるな
   // サーバーサイドのみ実行
 
+  // fetch(`http://localhost:3000/api/testapi.json`).then(response => response.json()).then(data => console.log(data));
+  // うまくfetchできなかった。けど普通はできそう。fetchに不慣れだった。
+
   const data = getPostData(paramsss.params.hey)
   return {
     props: {
