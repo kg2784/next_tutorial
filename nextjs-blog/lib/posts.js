@@ -44,7 +44,10 @@ export function getAllPostIds() {
     return {
       params: {
         // paramsまでは固定
-        hey: fileName.replace(/\.md$/, '')
+        // hey: fileName.replace(/\.md$/, '')
+        // ...を使用する場合、配列にしないとビルドの段階でエラーになる
+        // /posts/a/b/cにマッチさせるには[a, b ,c]を返さなければいけない
+        hey: [fileName.replace(/\.md$/, '')]
       }
     }
   })
