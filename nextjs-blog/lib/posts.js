@@ -35,3 +35,31 @@ export function getSortedPostsData() {
     }
   })
 }
+
+export function getAllPostIds() {
+  console.log('check');
+  const fileNames = fs.readdirSync(postsDirectory)
+
+  return fileNames.map(fileName => {
+    return {
+      params: {
+        // paramsまでは固定
+        hey: fileName.replace(/\.md$/, '')
+      }
+    }
+  })
+}
+
+export function getPostData(id) {
+  const fullPath = path.join(postsDirectory, `${id}.md`)
+  const fileContents = fs.readFileSync(fullPath, 'utf8')
+
+  // 投稿のメタデータ部分を解析するために gray-matter を使う
+  const matterResult = matter(fileContents)
+
+  // データを id と組み合わせる
+  return {
+    id,
+    ...matterResult.data
+  }
+}
